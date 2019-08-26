@@ -53,7 +53,6 @@ def figureout():
         return render_template('find-the-words.html',docs = found_docs)
     elif request.method == 'POST':
         data = request.form.to_dict(flat = False)
-        print(data)
         for doc in data['name']:
             user_answers.append(doc.strip().upper())
         found_docs = [x for x in mongo.db.words.find({})]
