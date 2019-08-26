@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% extends "base.html" %}
+{% block content %}
+
+{% macro input(name, value='', type='text', size=20) -%}
+			<input type="{{ type }}" name="{{ name }}" value="{{
+				value|e }}" size="{{ size }}">
+		{%- endmacro %}
+
+<div class="entry">
+ <h1>Figure out the words</h1>
+    <p>One you have filled all the boxes, click on Finish to see your score</p>
+
+
+
+    <form method="POST" action="/figureout">
+
+
+     <div class="form-group">
+         {% for d in docs %}
+          <div> {{ d['word'].upper() }} </div>
+         <div>{{ d.figure }}</div>
+
+        {{ input ('name' ) }}
+
+
+         {% endfor %}
+        </div>
+ <button type = "submit" class="btn btn-success" >Figure out the words</button>
+
+ </form>
+</div>
+
+{% endblock %}
+
+</html>

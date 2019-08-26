@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="entry">
+ <h1>Jumble a word</h1>
+    <p>Please entry the word in the empty box and click on Add button </p>
+
+ <form method="POST" action="/jumble">
+
+     <div class="form-group">
+        <input class="form-control" type="text" name="word">
+
+            <button type = "submit" class="btn btn-success" >Add</button>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}
+</html>

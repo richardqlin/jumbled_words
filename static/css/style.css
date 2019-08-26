@@ -1,0 +1,21 @@
+#myHeader {
+ background-color : white;
+ color: green;
+ text_align: center;
+
+ padding: 40px;
+
+}
+
+h1 {
+
+	text_align: center;
+}
+
+.entry {
+	border: 1px solid black;
+	border-radius: 5px;
+	margin: 50px;
+	padding: 30px;
+	background-color: honeydew;
+}
