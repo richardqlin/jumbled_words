@@ -5,7 +5,6 @@ from flask_bootstrap import Bootstrap
 
 import random
 
-import json
 app = Flask('jumbled_words')
 
 app.config['MONGO_URI'] = 'mongodb://localhost:27017/jumbled-words-db'
@@ -30,13 +29,11 @@ def drop():
 def jumble():
     if request.method == 'GET':
         found_docs = [x for x in mongo.db.words.find({})]
-        print(found_docs)
         return render_template('jumble-a-word.html')
     elif request.method == 'POST':
         doc = {}
         for item in request.form:
             doc[item] = request.form[item].strip().upper()
-            #doc['figure']=''
         print(doc)
         mongo.db.words.insert_one(doc)
         return redirect('/')
@@ -60,7 +57,6 @@ def figureout():
         for doc in data['name']:
             user_answers.append(doc.strip().upper())
         found_docs = [x for x in mongo.db.words.find({})]
-        #print(found_docs,user_answers)
         total_answers=len(user_answers)
         for index in range(total_answers):
             if user_answers[index] == found_docs[index]['word']:
