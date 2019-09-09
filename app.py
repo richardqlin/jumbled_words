@@ -56,10 +56,10 @@ def figureout():
 
 
 
-        #data = request.form.to_dict(flat = False)
+        data = request.form.to_dict(flat = False)
         print(data)
-        #for doc in data['name']:
-        for doc in data:
+        for doc in data['name']:
+        #for doc in data:
             user_answers.append(doc.strip().upper())
         found_docs = [x for x in mongo.db.words.find({})]
         total_answers=len(user_answers)
