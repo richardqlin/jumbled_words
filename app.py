@@ -16,7 +16,7 @@ mongo = PyMongo(app)
 @app.route('/', methods = ['GET', 'POST'])
 
 def jumbled_words():
-    #mongo.db.words.drop({})
+
     return render_template('jumble_a_word.html')
 
 @app.route('/drop')
@@ -52,8 +52,14 @@ def figureout():
             doc['word'] = jumbled_word
         return render_template('find-the-words.html',docs = found_docs)
     elif request.method == 'POST':
-        data = request.form.to_dict(flat = False)
-        for doc in data['name']:
+        data = request.form.getlist('name')
+
+
+
+        #data = request.form.to_dict(flat = False)
+        print(data)
+        #for doc in data['name']:
+        for doc in data:
             user_answers.append(doc.strip().upper())
         found_docs = [x for x in mongo.db.words.find({})]
         total_answers=len(user_answers)
