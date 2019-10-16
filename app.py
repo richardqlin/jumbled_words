@@ -52,7 +52,7 @@ def figureout():
             doc['word'] = jumbled_word
         return render_template('find-the-words.html',docs = found_docs)
     elif request.method == 'POST':
-        data = request.form.getlist('name')
+        #data = request.form.getlist('name')
 
 
 
