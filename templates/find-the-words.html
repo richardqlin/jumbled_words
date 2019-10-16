@@ -4,10 +4,10 @@
 {% extends "base.html" %}
 {% block content %}
 
-{% macro input(name, value='', type='text', size=20) -%}
+<!--{% macro input(name, value='', type='text', size=20) -%}
 			<input type="{{ type }}" name="{{ name }}" value="{{
 				value|e }}" size="{{ size }}">
-		{%- endmacro %}
+		{%- endmacro %} -->
 
 <div class="entry">
  <h1>Figure out the words</h1>
@@ -23,7 +23,9 @@
           <div> {{ d['word'].upper() }} </div>
          <div>{{ d.figure }}</div>
 
-        {{ input ('name' ) }}
+         <!--{{ input ('name' ) }}-->
+
+         <input type="text" name="name" value =''>
 
 
          {% endfor %}
