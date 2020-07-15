@@ -7,8 +7,10 @@ import random
 
 app = Flask('jumbled_words')
 
-app.config['MONGO_URI'] = 'mongodb://localhost:27017/jumbled-words-db'
+#app.config['MONGO_URI'] = 'mongodb://localhost:27017/jumbled-words-db'
 
+
+app.config['MONGO_URI'] = 'mongodb+srv://richardlin:richardlin@cluster0-4kl8t.azure.mongodb.net/words?retryWrites=true&w=majority'
 Bootstrap(app)
 
 mongo = PyMongo(app)
@@ -42,31 +44,64 @@ def jumble():
 def figureout():
     found_docs =list(mongo.db.words.find())
     total_words = len(found_docs)
-    user_answers = []
-    score = 0
+    percentage =0
+    if total_words == 0:
+        redirect('/')
+
     if request.method == 'GET':
         for doc in found_docs:
             jumbled_word_letters = list(doc['word'])
             random.shuffle(jumbled_word_letters)
             jumbled_word=''.join(jumbled_word_letters)
             doc['word'] = jumbled_word
-        return render_template('find-the-words.html',docs = found_docs)
+        return render_template('find-the-words.html',docs = found_docs, count = total_words)
     elif request.method == 'POST':
-        data = request.form.getlist('name')
+        score = 0
+        user_answers=[]
+        #data = request.form.to_dict(flat = False)
+        #if len(data)==0:
+        #    return redirect('/')
+        #for doc in data['name']:
+        #    user_answers.append(doc.strip().upper())
+        #print(user_answers)
 
-
-
-        data = request.form.to_dict(flat = False)
-        print(data)
-        for doc in data['name']:
-        #for doc in data:
-            user_answers.append(doc.strip().upper())
-        found_docs = [x for x in mongo.db.words.find({})]
-        total_answers=len(user_answers)
-        for index in range(total_answers):
+        #found_docs = [x for x in mongo.db.words.find({})]
+        #total_answers=len(user_answers)
+        '''for index in range(total_words):
             if user_answers[index] == found_docs[index]['word']:
                 score += 1
-        return render_template('results.html', score = str(score))
+        '''
+        for item in request.form:
+            user_answers.append(request.form[item].strip().upper())
+        for index in range(0,total_words):
+            if user_answers[index] == found_docs[index]['word']:
+                score += 1
+
+        try:
+            percentage = score / total_words * 100
+        except ZeroDivisionError:
+            print('error')
+        message =''
+        grade = ''
+        if 90.0 <=percentage<=100:
+            message ='Excellent'
+            grade = 'A'
+        elif 80.0 <=percentage<90:
+            message ='Good'
+            grade ="B"
+        elif 70 <= percentage <80:
+            message = 'Average'
+            grade = 'C'
+        elif 60 <= percentage < 70:
+            message = 'Below Average'
+            grade = 'D'
+        elif 0<= percentage<60:
+            grade = 'F'
+            message = 'Failure'
+
+        return render_template('results.html', score = str(score), total= total_words, message= message, grade = grade
+
+                               )
 
 
 app.run(debug=True)

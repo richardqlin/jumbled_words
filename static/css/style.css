@@ -3,11 +3,11 @@
  color: green;
  text_align: center;
 
- padding: 40px;
+ margin-left: 40px;
 
 }
 
-h1 {
+.h1 {
 
 	text_align: center;
 }

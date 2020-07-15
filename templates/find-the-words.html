@@ -4,12 +4,12 @@
 {% extends "base.html" %}
 {% block content %}
 
-{% macro input(name, value='', type='text', size=20) -%}
+<!--{% macro input(name, value='', type='text', size=20) -%}
 			<input type="{{ type }}" name="{{ name }}" value="{{
 				value|e }}" size="{{ size }}">
-		{%- endmacro %}
+		{%- endmacro %}-->
 
-<div class="entry">
+<div class="jumbotron text-center">
  <h1>Figure out the words</h1>
     <p>One you have filled all the boxes, click on Finish to see your score</p>
 
@@ -19,11 +19,13 @@
 
 
      <div class="form-group">
-         {% for d in docs %}
-          <div> {{ d['word'].upper() }} </div>
-         <div>{{ d.figure }}</div>
+         {% for doc in docs %}
+          <div> {{ doc['word'].upper() }} </div>
 
-        {{ input ('name' ) }}
+
+        <!--{{ input ('name' ) }}-->
+
+         <input type="text" name={{doc['_id']}} >
 
 
          {% endfor %}

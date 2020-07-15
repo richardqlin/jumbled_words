@@ -5,22 +5,42 @@
 
 {% block content %}
 
-<div class="entry">
+<div class="jumbotron text-center">
 
     <h1>Your Score:</h1>
-<div>
-{{ score }}
 
-    </div>
-<div>
+{{ score }} out of {{total }}
 
-
-
-        <button type = "submit"  class="btn btn-primary" ><a href ="/"> Go back </a></button>
-
-
+     <a href ="/">   <button type = "submit"  class="btn btn-primary" >Go back </button></a>
 
 </div>
-</div>
+<div class="container">
+
+    <h1>
+    {% if grade =='A' %}
+    <font color="green"> {{ message}} &#128522;</font>
+    {% elif grade=='B' %}
+    <font color="blue"> {{ message }} &#128512;</font>
+
+        {% elif grade =='C' %}
+    <font color="slateblue"> {{ message}} &#128528;</font>
+    {% elif grade=='D' %}
+    <font color="orange"> {{ message }} &#128543;</font>
+
+         {% elif grade=='F' %}
+    <font color="red"> {{ message }} &#128542;</font>
+    {% endif %}
+
+</h1>
+<div>
+
 {% endblock %}
+
+
+
+
+
+</div>
+</div>
+
 </html>
