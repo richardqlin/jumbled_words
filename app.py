@@ -99,9 +99,7 @@ def figureout():
             grade = 'F'
             message = 'Failure'
 
-        return render_template('results.html', score = str(score), total= total_words, message= message, grade = grade
-
-                               )
+        return render_template('results.html', score = str(score), total= total_words, message= message, grade = grade)
 
 if __name__ == '__main__':
     app.run(host='https://sensationnel-monsieur-51684.herokuapp.com/',debug=True)
