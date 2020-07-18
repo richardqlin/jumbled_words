@@ -11,6 +11,10 @@
 
 <div class="jumbotron text-center">
  <h1>Figure out the words</h1>
+     {% if count==0 %}
+
+        <a href="/"> <button  class="btn btn-success">Go Back to Home Page</button></a>
+          {% endif %}
     <p>One you have filled all the boxes, click on Finish to see your score</p>
 
 
@@ -31,12 +35,9 @@
          {% endfor %}
         </div>
 
-        {% if count==0 %}
 
-        <a href="/"> <button  class="btn btn-success">Go Back to Home Page</button></a>
-        {% else %}
         <button type = "submit" class="btn btn-success" >Figure out the words</button>
-        {% endif %}
+
 
  </form>
 </div>
