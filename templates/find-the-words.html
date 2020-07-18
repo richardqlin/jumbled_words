@@ -30,7 +30,13 @@
 
          {% endfor %}
         </div>
+
+        {% if count ==0 %}
+
+        <a href="/figureout"> <button  class="btn btn-success">Figure out the words</button></a>
+        {% else %}
  <button type = "submit" class="btn btn-success" >Figure out the words</button>
+        {% endif %}
 
  </form>
 </div>
