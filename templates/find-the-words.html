@@ -14,10 +14,11 @@
      {% if count==0 %}
 
         <a href="/"> <button  class="btn btn-primary">Go Back to Home Page</button></a>
-          {% endif %}
+
+    {% else %}
     <p>One you have filled all the boxes, click on Finish to see your score</p>
 
-
+    {% endif %}
 
     <form method="POST" action="/figureout">
 
