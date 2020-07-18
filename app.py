@@ -44,10 +44,10 @@ def jumble():
 def figureout():
     found_docs =list(mongo.db.words.find())
     total_words = len(found_docs)
-    percentage =0
+    '''percentage =0
     if total_words == 0:
         redirect('/')
-
+    '''
     if request.method == 'GET':
         for doc in found_docs:
             jumbled_word_letters = list(doc['word'])
