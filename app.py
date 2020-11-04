@@ -22,7 +22,6 @@ def jumbled_words():
     return render_template('jumble_a_word.html')
 
 @app.route('/drop')
-
 def drop():
     mongo.db.words.drop()
     return render_template('jumble_a_word.html')
