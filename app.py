@@ -71,8 +71,8 @@ def figureout():
             if user_answers[index] == found_docs[index]['word']:
                 score += 1
         '''
-        for item in request.form:
-            user_answers.append(request.form[item].strip().upper())
+        for item in request.form.getlist('name'):
+            user_answers.append(item.strip().upper())
         for index in range(0,total_words):
             if user_answers[index] == found_docs[index]['word']:
                 score += 1
